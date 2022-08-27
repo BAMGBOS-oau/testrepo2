@@ -1,0 +1,52 @@
+Code to classify customers of a micro finance bank and putting dem into table.
+
+
+
+
+
+
+
+Customers = ['Kenneth', 'Stella', 'Mercy', 'Chizulum', 'Clifford', 'Boniface', 'Tosin', 'Godwin','Charles', 'Oche']
+
+AcctBals = [2238732,353,547898,6235,678,6066,9598475,59765034,747750,6444]
+CustTypes = ['HighNetWorth', 'BusinessClass', 'Ordinary']
+
+-Defining the function:
+
+def custClassifier(name, bal):
+    CustTypes = ['HighNetWorth', 'BusinessClass', 'Ordinary']
+    if bal > 100000:
+        custClass = CustTypes[0]
+    elif bal > 50000 and bal < 100000:
+        custClass = CustTypes[1]
+    else:
+        custClass = CustTypes[2]
+
+    return name, bal, custClass    
+
+import pandas as pd
+
+Customers = ['Kenneth', 'Stella', 'Mercy', 'Chizulum', 'Clifford', 'Boniface', 'Tosin', 'Godwin','Charles', 'Oche']
+
+AcctBals = [2238732,353,547898,6235,678,6066,9598475,59765034,747750,6444]
+
+
+custTable = pd.DataFrame()
+
+custName = []
+custBal = []
+custClass = []
+
+for cust, bals in zip(Customers, AcctBals):
+    customer, balance, cusClass = custClassifier(cust, bals)
+
+    custName.append(customer)
+    custBal.append(balance)
+    custClass.append(cusClass)
+
+custTable['Name'] = custName
+custTable['Balance'] = custBal
+custTable['Class'] = custClass
+
+
+print(custTable)
