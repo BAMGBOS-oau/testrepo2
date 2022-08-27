@@ -1,0 +1,72 @@
+
+# How to design a simpple calculator
+
+# First create the function list
+
+
+
+
+
+funcList = ['a', 'd', 's', 'm', '%']
+
+# defining functions
+
+def addFunc(val1, val2):
+    res = val1+val2
+    return res
+
+def divFunc(val1, val2):
+    res = val1/val2
+    return res
+
+def subFunc(val1, val2):
+    res = val1-val2
+    return res
+
+def mulFunc(val1, val2):
+    res = val1*val2
+    return res
+
+def percgeFunc(val1, val2):
+    res = (val1/val2)*100
+    return res
+
+
+# prompt user to input value one,value 2 and the operator
+
+val1 = int(input('Enter first value here: '))
+val2 = int(input('Enter second value here:'))
+opr = input('Select any of these operators: a(addition), d(division), s(subtraction), m(multiplication), %(percentage)')
+
+# Making sure the user inputs the right operator
+
+if opr in funcList:
+    opr = opr
+
+else: 
+    print('Select only available operator')
+
+
+
+if opr == 'a':
+        res = addFunc(val1, val2)
+        print(f'the result of your calculation is {res}')
+
+elif opr == 'd':
+        res = divFunc(val1, val2)
+        print(f'the result of your calculation is {res}')
+
+elif opr == 's':
+        res = subFunc(val1, val2)
+        print(f'the result of your calculation is {res}')
+
+elif opr == 'm':
+        res = mulFunc(val1, val2)
+        print(f'the result of your calculation is {res}')
+
+else:
+        res = percgeFunc(val1, val2)
+        print(f'the result of your calculation is {res}')
+
+
+print('Thnak you')
