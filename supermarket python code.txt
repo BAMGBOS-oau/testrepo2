@@ -1,0 +1,122 @@
+Scenario:
+    
+    Madam Rita is a trader. She sells appliances. 
+    there are three categories of appliances she sells;
+    1. Electronics
+    2. Computer systems
+    3. Accessories  
+    
+    she wants to be able to track sales for each category, capturing details of the buyer 
+    (name, gender and location and phone number) and date of purchase and amount paid.    
+    She wants a python progam that enables her to achieve these and also show who 
+    bought what at the end of the day.
+    
+    Put the record of the customers' details in a tabular form.
+    
+    
+SOLUTION:
+
+
+
+
+
+#Create a tuple for the category of alliances...
+
+prodCat = ('Electronics', 'Computer_systems', 'Accessories')
+
+
+
+
+#creating a function that will populate the customers' records
+
+custRecords = dict()  #creating an empty dictionary for the customers
+
+salesRecords = dict() #creating an empty dictionary for sales record of customers
+
+
+def customerRecorder(name, gender, location, phone):
+    tempList = [gender, location, phone]
+    custRecords[name] = tempList
+    
+    
+    
+def salesRecorder(name, date, category, qty, unitprice):
+    tempDict = dict()
+    totalSales = qty * unitprice
+    salesKey = name + '_' + date
+    tempList = [date, totalSales]
+    tempDict[category] = tempList 
+    salesRecords[salesKey] = tempDict
+    
+
+#Logic input for customerrecorder function
+
+name = input('Enter name here: ')
+gender = input('Enter gender here: ')
+location = input('Enter location here: ')
+phone = input('Enter phone number here: ')
+
+customerRecorder(name, gender, location, phone)
+
+
+# logic inputs for sales recorder function
+
+name = input('Enter name here: ')
+date = input('Enter date here: ')
+category = input('Enter category here: ')
+qty = int(input('Enter quantity of items purchased here: '))
+unitprice = float(input('Enter unit price of items here: '))
+
+salesRecorder(name, date, category, qty, unitprice)
+
+
+print(custRecords)
+print(salesRecords)
+
+
+
+
+
+
+# Further more, let's create a function that will automatically populate the sales and customer records at once
+
+def transactionRecords():
+    name = input('Enter name here: ')
+    gender = input('Enter gender here: ')
+    location = input('Enter location here: ')
+    phone = input('Enter phone number here: ')
+    date = input('Enter date here: ')
+    category = input('Enter category here: ')
+    qty = int(input('Enter quantity of items purchased here: '))
+    unitprice = float(input('Enter unit price of items here: '))
+    
+    customerRecorder(name, gender, location, phone)
+    
+    
+    salesRecorder(name, date, category, qty, unitprice)
+
+
+#let's call the function
+
+transactionRecords()   #this will populate the customers' records and the sales records.
+
+print(custRecords) 
+print(salesRecords)
+
+
+#let's put the customer's details in tabular form
+
+import pandas as pd
+
+custTable = pd.DataFrame()  #creating an empty table
+
+
+
+#populating the table with keys and values from the custrecords dictionary
+
+custTable['Customers'] = list(custRecords.keys())
+custTable['Items'] = list(custRecords.values())
+
+
+print(custTable)
+
